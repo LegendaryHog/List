@@ -116,3 +116,25 @@ int Dbg_Dump (List* list)
     fprintf (list->logfile, "\n");
     return NO_ERR;
 }
+
+int List_Resize (List* list)
+{
+    list->capacity *= 2;
+
+    list->data = (data_t*)    realloc (list->data, list->capacity * sizeof (data_t));
+    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    {
+        list->data[i] = 0;
+    }
+    list->next = (long long*) realloc (list->next, list->capacity * sizeof (data_t));
+    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    {
+        list->next[i] = - (list->capacity/2 + 1);
+    }
+    list->prev = (long long*) realloc (list->next, list->capacity * sizeof (data_t));
+    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    {
+        list->prev[i] = -1;
+    }
+    return NO_ERR;
+}

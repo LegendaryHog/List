@@ -20,8 +20,6 @@ typedef struct List {
     long long* next;
     long long* prev;
     long long  free;
-    long long  head;
-    long long  tail;
     long long  size;
     long long  capacity;
     FILE*      logfile;
@@ -32,5 +30,7 @@ int List_Dtor    (List* list);
 int List_Ins_Aft (List* list, long long last, data_t push);
 int List_Delete  (List* list, long long elem);
 int Dbg_Dump     (List* list);
+int List_Resize  (List* list);
+int List_Check   (List* list);
 
 #endif //LISTH
