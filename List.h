@@ -8,7 +8,7 @@
 #define CAPACITY_0 8
 #define POISON     (1000 - 7)
 
-enum ERRORS{
+enum ERRORS {
     NO_ERR = 0,
     ERR = 1,
 };
@@ -24,11 +24,13 @@ typedef struct List {
     long long  tail;
     long long  size;
     long long  capacity;
+    FILE*      logfile;
 } List;
 
 int List_Ctor    (List* list);
 int List_Dtor    (List* list);
 int List_Ins_Aft (List* list, long long last, data_t push);
-int List_Delete  (List* list);
+int List_Delete  (List* list, long long elem);
+int Dbg_Dump     (List* list);
 
 #endif //LISTH
