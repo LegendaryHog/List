@@ -22,9 +22,9 @@ int main (void)
     Dbg_Dump (list);
     List_Delete (list, 1);
     List_Delete (list, 15);
-    List_Delete (list, 0);
     Dbg_Dump (list);
     List_Ins_Aft (list, 0, 167);
+    Dbg_Dump (list);
     List_Dtor (list);
     free (list);
     return 0;

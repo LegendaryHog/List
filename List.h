@@ -16,6 +16,7 @@ enum ERRORS {
 };
 
 typedef int data_t;
+typedef unsigned char flag_t;
 
 typedef struct List {
     data_t*    data;
@@ -25,7 +26,8 @@ typedef struct List {
     long long  size;
     long long  capacity;
     FILE*      logfile;
-    unsigned char okflag;
+    flag_t     okmask;
+    int        linflag;     
 } List;
 
 int List_Ctor    (List* list);

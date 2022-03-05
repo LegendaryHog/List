@@ -41,7 +41,7 @@ int List_Ctor (List* list)
     }
     list->free    = START_END + 1;
     list->logfile = fopen ("logfile.txt", "w");
-    list->okflag = 0;
+    list->okmask = 0;
     return NO_ERR;
 }
 
@@ -134,20 +134,20 @@ int List_Delete (List* list, long long elem)
 int Dbg_Dump (List* list)
 {
     assert (list != NULL);
-    if ((list->okflag & LOG_NULL) != 0)
+    if ((list->okmask & LOG_NULL) != 0)
     {
-        printf ("%u\n", list->okflag);
+        printf ("%u\n", list->okmask);
         printf ("LOGFILE POINTER IS NULL, U FUCKED UP\n");
         return ERR;
     }
     
     fprintf (list->logfile, "List [%p].", list);
-    if (list->okflag != 0)
+    if (list->okmask != 0)
     {
         fprintf (list->logfile, "List is BAD:");
         for (int i = 0; i < ERR_NUM; i++)
         {
-            if ((list->okflag & 1<<i) != 0)
+            if ((list->okmask & 1<<i) != 0)
             {
                 fputs (err_names[i], list->logfile);
             }
@@ -159,7 +159,7 @@ int Dbg_Dump (List* list)
     }
     fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\n", list->size, list->capacity, list->free);
     fprintf (list->logfile, "\tdata [%p]\n\t", list->data);
-    if ((list->okflag & DATA_NULL) == 0)
+    if ((list->okmask & DATA_NULL) == 0)
     {
         for (long long i = 0; i < list->capacity; i++)
         {
@@ -173,7 +173,7 @@ int Dbg_Dump (List* list)
     }
     fprintf (list->logfile, "\n\t");
     fprintf (list->logfile, "next [%p]\n\t", list->next);
-    if ((list->okflag & NEXT_NULL) == 0)
+    if ((list->okmask & NEXT_NULL) == 0)
     {
         for (long long i = 0; i < list->capacity; i++)
         {
@@ -187,7 +187,7 @@ int Dbg_Dump (List* list)
     }
     fprintf (list->logfile, "\n\t");
     fprintf (list->logfile, "prev [%p]\n\t", list->prev);
-    if ((list->okflag & PREV_NULL) == 0)
+    if ((list->okmask & PREV_NULL) == 0)
     {
         for (long long i = 0; i < list->capacity; i++)
         {
@@ -230,25 +230,56 @@ int List_Resize (List* list)
     return NO_ERR;
 }
 
-/*int Linear (List* list)
+int Linear (List* list)
 {
-    assert ();
-    (1&&3)
-}*/
+    assert (list != NULL);
+    LIST_CHECK
+    data_t*    new_data = (data_t*)    calloc (list->capacity, sizeof (data_t));
+    long long* new_next = (long long*) calloc (list->capacity, sizeof (long long));
+    long long* new_prev = (long long*) calloc (list->capacity, sizeof (long long));
+
+    long long j = 0;
+    for (long long i = 0; i < list->size; i++)
+    {
+        new_data[i + 1] = list->data[list->next[j]];
+        j = list->next[j];
+    }
+    list->free = list->size + 1;
+    for (long long i = 0; i < list->free; i++)
+    {
+        new_next[i] = (i + 1) % (list->free);
+    }
+    for (long long i = list->free; i < list->capacity; i++)
+    {
+        new_next[i] = -(i + 1);
+    }
+    new_prev[START_END] = list->size;
+    for (long long i = 1; i < list->free; i++)
+    {
+        new_prev[i] = (i - 1);
+    }
+    for (long long i = list->free; i < list->capacity; i++)
+    {
+        new_prev[i] = -1;
+    }
+
+    LIST_CHECK
+    return NO_ERR;
+}
 
 int List_Ok (List* list)
 {
     assert (list != NULL);
 
-    list->okflag |= DATA_NULL && (list->data == NULL);
-    list->okflag |= NEXT_NULL && (list->next == NULL);
-    list->okflag |= PREV_NULL && (list->prev == NULL);
-    list->okflag |= BAD_CAP   && (list->capacity < CAPACITY_0);
-    list->okflag |= BAD_FREE  && (list->free <= 0 || list->free > list->capacity);
-    list->okflag |= BAD_SIZE  && (list->size >= list->capacity || list->size < 0);
-    list->okflag |= LOG_NULL  && (list->logfile == NULL);
+    list->okmask |= DATA_NULL && (list->data == NULL);
+    list->okmask |= NEXT_NULL && (list->next == NULL);
+    list->okmask |= PREV_NULL && (list->prev == NULL);
+    list->okmask |= BAD_CAP   && (list->capacity < CAPACITY_0);
+    list->okmask |= BAD_FREE  && (list->free <= 0 || list->free > list->capacity);
+    list->okmask |= BAD_SIZE  && (list->size >= list->capacity || list->size < 0);
+    list->okmask |= LOG_NULL  && (list->logfile == NULL);
 
-    if (list->okflag != 0)
+    if (list->okmask != 0)
     {
         return ERR;
     }
