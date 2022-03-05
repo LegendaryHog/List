@@ -42,6 +42,11 @@ int List_Dtor (List* list)
 int List_Ins_Aft (List* list, long long last, data_t push)
 {
     assert (list != NULL);
+    if (last < 0 || last >= list->capcity)
+    {
+        fprintf (list->logfile, "Illegal last elem for insert last = %lld\nNothing was done in function.\n", last);
+        return ERR;
+    }
 
     list->size++;
     long free  = list->free;               //free save
@@ -61,7 +66,24 @@ int List_Ins_Aft (List* list, long long last, data_t push)
 int List_Delete (List* list, long long elem)
 {
     assert (list != NULL);
-
+    if (elem == 0)
+    {
+        fprintf (list->logfile, "U can't delete START/END element, elem = %lld\n", elem);
+        fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
+        return ERR;
+    }
+    else if (elem < 0 || elem >= list->capacity)
+    {
+        fprintf (list->logfile, "Illegal elem to delete, elem not in allocated memory, elem = %lld\n", elem);
+        fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
+        return ERR;
+    }
+    else if (list->next[elem] < 0)
+    {
+        fprintf (list->logfile, "Illegal elem to delte, elem does not belong to list, elem = %lld\n", elem);
+        fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
+        return ERR;
+    }
     list->size--;
     list->data[elem] = 0; //clean elem
 
@@ -121,7 +143,7 @@ int List_Resize (List* list)
 {
     list->capacity *= 2;
 
-    list->data = (data_t*)    realloc (list->data, list->capacity * sizeof (data_t));
+    list->data = (data_t*) realloc (list->data, list->capacity * sizeof (data_t));
     for (long long i = list->capcity / 2; i < list->capacity; i++)
     {
         list->data[i] = 0;

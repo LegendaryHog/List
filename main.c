@@ -21,5 +21,7 @@ int main (void)
     List_Ins_Aft (list, 0, 171);
     Dbg_Dump (list);
     List_Delete (list, 1);
+    List_Dtor (list);
+    free (list);
     return 0;
 }
