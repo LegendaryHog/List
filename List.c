@@ -1,5 +1,27 @@
 #include "List.h"
 
+#define DATA_NULL  (1<<0)
+#define NEXT_NULL  (1<<1)
+#define PREV_NULL  (1<<2)
+#define BAD_CAP    (1<<3)
+#define BAD_FREE   (1<<4)
+#define BAD_SIZE   (1<<5)
+#define LOG_NULL   (1<<6)
+#define ERR_NUM    7
+
+#define MAX_LEN_ERR 24
+
+char err_names [][MAX_LEN_ERR] = {
+    {"data pointer is NULL\n"},
+    {"next pointer is NULL\n"},
+    {"prev pointer is NULL\n"},
+    {"bad capacity\n"},
+    {"free element is null\n"},
+    {"bad size\n"},
+    {"logfile pointer is NULL"}
+};
+
+
 int List_Ctor (List* list)
 {
     assert (list != NULL);
@@ -17,22 +39,23 @@ int List_Ctor (List* list)
     {
         list->prev[i] = -1;
     }
-    list->free = 1;
+    list->free    = START_END + 1;
     list->logfile = fopen ("logfile.txt", "w");
+    list->okflag = 0;
     return NO_ERR;
 }
 
 int List_Dtor (List* list)
 {
     assert (list != NULL);
-    
+    LIST_CHECK
     free (list->data);
     free (list->next);
     free (list->prev);
     fclose (list->logfile);
-    list->data = (void*)POISON;
-    list->next = (void*)POISON;
-    list->prev = (void*)POISON;
+    list->data = (data_t*)POISON;
+    list->next = (long long*)POISON;
+    list->prev = (long long*)POISON;
     list->free = POISON;
     return NO_ERR;
 }
@@ -40,6 +63,7 @@ int List_Dtor (List* list)
 int List_Ins_Aft (List* list, long long last, data_t push)
 {
     assert (list != NULL);
+    LIST_CHECK
     if (last < 0 || last >= list->capacity)
     {
         fprintf (list->logfile, "Illegal last elem for insert last = %lld\nNothing was done in function.\n", last);
@@ -69,13 +93,14 @@ int List_Ins_Aft (List* list, long long last, data_t push)
 int List_Delete (List* list, long long elem)
 {
     assert (list != NULL);
+    LIST_CHECK
     if (list->size == 0)
     {
         fprintf (list->logfile, "Delete from empty list\n");
         fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
         return ERR;
     }
-    else if (elem == 0)
+    else if (elem == START_END)
     {
         fprintf (list->logfile, "U can't delete START/END element, elem = %lld\n", elem);
         fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
@@ -109,40 +134,70 @@ int List_Delete (List* list, long long elem)
 int Dbg_Dump (List* list)
 {
     assert (list != NULL);
-
-    fprintf (list->logfile, "List [%p]\n", list);
+    if ((list->okflag & LOG_NULL) != 0)
+    {
+        printf ("%u\n", list->okflag);
+        printf ("LOGFILE POINTER IS NULL, U FUCKED UP\n");
+        return ERR;
+    }
+    
+    fprintf (list->logfile, "List [%p].", list);
+    if (list->okflag != 0)
+    {
+        fprintf (list->logfile, "List is BAD:");
+        for (int i = 0; i < ERR_NUM; i++)
+        {
+            if ((list->okflag & 1<<i) != 0)
+            {
+                fputs (err_names[i], list->logfile);
+            }
+        }
+    }
+    else
+    {
+        fprintf (list->logfile, "List is Ok\n");
+    }
     fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\n", list->size, list->capacity, list->free);
     fprintf (list->logfile, "\tdata [%p]\n\t", list->data);
-    for (long long i = 0; i < list->capacity; i++)
+    if ((list->okflag & DATA_NULL) == 0)
     {
-        fprintf (list->logfile, "[%3lld] ", i);
-    }
-    fprintf (list->logfile, "\n\t");
-    for (long long i = 0; i < list->capacity; i++)
-    {
-        fprintf (list->logfile, "[%3d] ", list->data[i]);
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3lld] ", i);
+        }
+        fprintf (list->logfile, "\n\t");
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3d] ", list->data[i]);
+        }
     }
     fprintf (list->logfile, "\n\t");
     fprintf (list->logfile, "next [%p]\n\t", list->next);
-    for (long long i = 0; i < list->capacity; i++)
+    if ((list->okflag & NEXT_NULL) == 0)
     {
-        fprintf (list->logfile, "[%3lld] ", i);
-    }
-    fprintf (list->logfile, "\n\t");
-    for (long long i = 0; i < list->capacity; i++)
-    {
-        fprintf (list->logfile, "[%3lld] ", list->next[i]);
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3lld] ", i);
+        }
+        fprintf (list->logfile, "\n\t");
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3lld] ", list->next[i]);
+        }
     }
     fprintf (list->logfile, "\n\t");
     fprintf (list->logfile, "prev [%p]\n\t", list->prev);
-    for (long long i = 0; i < list->capacity; i++)
+    if ((list->okflag & PREV_NULL) == 0)
     {
-        fprintf (list->logfile, "[%3lld] ", i);
-    }
-    fprintf (list->logfile, "\n\t");
-    for (long long i = 0; i < list->capacity; i++)
-    {
-        fprintf (list->logfile, "[%3lld] ", list->prev[i]);
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3lld] ", i);
+        }
+        fprintf (list->logfile, "\n\t");
+        for (long long i = 0; i < list->capacity; i++)
+        {
+            fprintf (list->logfile, "[%3lld] ", list->prev[i]);
+        }
     }
     fprintf (list->logfile, "\n");
     return NO_ERR;
@@ -173,4 +228,32 @@ int List_Resize (List* list)
         list->prev[i] = -1;
     }
     return NO_ERR;
+}
+
+/*int Linear (List* list)
+{
+    assert ();
+    (1&&3)
+}*/
+
+int List_Ok (List* list)
+{
+    assert (list != NULL);
+
+    list->okflag |= DATA_NULL && (list->data == NULL);
+    list->okflag |= NEXT_NULL && (list->next == NULL);
+    list->okflag |= PREV_NULL && (list->prev == NULL);
+    list->okflag |= BAD_CAP   && (list->capacity < CAPACITY_0);
+    list->okflag |= BAD_FREE  && (list->free <= 0 || list->free > list->capacity);
+    list->okflag |= BAD_SIZE  && (list->size >= list->capacity || list->size < 0);
+    list->okflag |= LOG_NULL  && (list->logfile == NULL);
+
+    if (list->okflag != 0)
+    {
+        return ERR;
+    }
+    else
+    {
+        return NO_ERR;
+    }
 }

@@ -7,6 +7,8 @@
 
 #define CAPACITY_0 8
 #define POISON     (1000 - 7)
+#define START_END  0
+#define LIST_CHECK if (List_Ok (list) == ERR){Dbg_Dump(list); return ERR;}
 
 enum ERRORS {
     NO_ERR = 0,
@@ -23,6 +25,7 @@ typedef struct List {
     long long  size;
     long long  capacity;
     FILE*      logfile;
+    unsigned char okflag;
 } List;
 
 int List_Ctor    (List* list);
@@ -32,5 +35,6 @@ int List_Delete  (List* list, long long elem);
 int Dbg_Dump     (List* list);
 int List_Resize  (List* list);
 int List_Check   (List* list);
+int List_Ok      (List* list);
 
 #endif //LISTH

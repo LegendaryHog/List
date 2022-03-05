@@ -21,7 +21,10 @@ int main (void)
     List_Ins_Aft (list, 0, 171);
     Dbg_Dump (list);
     List_Delete (list, 1);
-    
+    List_Delete (list, 15);
+    List_Delete (list, 0);
+    Dbg_Dump (list);
+    List_Ins_Aft (list, 0, 167);
     List_Dtor (list);
     free (list);
     return 0;
