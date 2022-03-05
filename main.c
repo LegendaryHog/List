@@ -13,7 +13,7 @@ int main (void)
     List_Delete  (list, 4);
     List_Delete  (list, 2);
     List_Delete  (list, 1);*/
-    for (long long i = 0; i < 7; i++)
+    for (long long i = 0; i < 15; i++)
     {
         List_Ins_Aft (list, i, 10*i + 10);
     }
@@ -21,6 +21,7 @@ int main (void)
     List_Ins_Aft (list, 0, 171);
     Dbg_Dump (list);
     List_Delete (list, 1);
+    
     List_Dtor (list);
     free (list);
     return 0;

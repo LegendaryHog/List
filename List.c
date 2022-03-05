@@ -18,8 +18,6 @@ int List_Ctor (List* list)
         list->prev[i] = -1;
     }
     list->free = 1;
-    list->head = 0;
-    list->tail = 0;
     list->logfile = fopen ("logfile.txt", "w");
     return NO_ERR;
 }
@@ -42,10 +40,15 @@ int List_Dtor (List* list)
 int List_Ins_Aft (List* list, long long last, data_t push)
 {
     assert (list != NULL);
-    if (last < 0 || last >= list->capcity)
+    if (last < 0 || last >= list->capacity)
     {
         fprintf (list->logfile, "Illegal last elem for insert last = %lld\nNothing was done in function.\n", last);
         return ERR;
+    }
+
+    if (list->size + 1 == list->capacity)
+    {
+        List_Resize (list);
     }
 
     list->size++;
@@ -66,7 +69,13 @@ int List_Ins_Aft (List* list, long long last, data_t push)
 int List_Delete (List* list, long long elem)
 {
     assert (list != NULL);
-    if (elem == 0)
+    if (list->size == 0)
+    {
+        fprintf (list->logfile, "Delete from empty list\n");
+        fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
+        return ERR;
+    }
+    else if (elem == 0)
     {
         fprintf (list->logfile, "U can't delete START/END element, elem = %lld\n", elem);
         fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
@@ -141,20 +150,25 @@ int Dbg_Dump (List* list)
 
 int List_Resize (List* list)
 {
+    assert (list != NULL);
+    assert (list->data != NULL);
+    assert (list->next != NULL);
+    assert (list->prev != NULL);
+
     list->capacity *= 2;
 
     list->data = (data_t*) realloc (list->data, list->capacity * sizeof (data_t));
-    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    for (long long i = list->capacity / 2; i < list->capacity; i++)
     {
         list->data[i] = 0;
     }
-    list->next = (long long*) realloc (list->next, list->capacity * sizeof (data_t));
-    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    list->next = (long long*) realloc (list->next, list->capacity * sizeof (long long));
+    for (long long i = list->capacity / 2; i < list->capacity; i++)
     {
-        list->next[i] = - (list->capacity/2 + 1);
+        list->next[i] = - (i + 1);
     }
-    list->prev = (long long*) realloc (list->next, list->capacity * sizeof (data_t));
-    for (long long i = list->capcity / 2; i < list->capacity; i++)
+    list->prev = (long long*) realloc (list->prev, list->capacity * sizeof (long long));
+    for (long long i = list->capacity / 2; i < list->capacity; i++)
     {
         list->prev[i] = -1;
     }
