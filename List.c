@@ -40,6 +40,7 @@ int List_Ctor (List* list)
         list->prev[i] = -1;
     }
     list->free    = START_END + 1;
+    list->linflag = 1;
     list->logfile = fopen ("logfile.txt", "w");
     list->okmask = 0;
     return NO_ERR;
@@ -70,13 +71,17 @@ int List_Ins_Aft (List* list, long long last, data_t push)
         return ERR;
     }
 
+    if (list->linflag == 1 && last != list->size)
+    {
+        list->linflag = 0;
+    }
+
     if (list->size + 1 == list->capacity)
     {
         List_Resize (list);
     }
-
     list->size++;
-    long free  = list->free;               //free save
+    long long free  = list->free;          //free save
     list->free = - list->next[list->free]; //free up
 
     list->data[free] = push; //push 
@@ -118,6 +123,12 @@ int List_Delete (List* list, long long elem)
         fprintf (list->logfile, "Nothing was done in function, returned ERR\n");
         return ERR;
     }
+
+    if (list->linflag == 1 && elem != list->size - 1)
+    {
+        list->linflag = 0;
+    }
+    
     list->size--;
     list->data[elem] = 0; //clean elem
 
@@ -157,7 +168,7 @@ int Dbg_Dump (List* list)
     {
         fprintf (list->logfile, "List is Ok\n");
     }
-    fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\n", list->size, list->capacity, list->free);
+    fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\nlinearized = %d\n", list->size, list->capacity, list->free, list->linflag);
     fprintf (list->logfile, "\tdata [%p]\n\t", list->data);
     if ((list->okmask & DATA_NULL) == 0)
     {
@@ -232,6 +243,8 @@ int List_Resize (List* list)
 
 int Linear (List* list)
 {
+    //system ("cmd.exe /c start ");
+
     assert (list != NULL);
     LIST_CHECK
     data_t*    new_data = (data_t*)    calloc (list->capacity, sizeof (data_t));
@@ -262,8 +275,9 @@ int Linear (List* list)
     {
         new_prev[i] = -1;
     }
-
+    list->linflag = 1;
     LIST_CHECK
+    //Delay (30);
     return NO_ERR;
 }
 
@@ -287,4 +301,56 @@ int List_Ok (List* list)
     {
         return NO_ERR;
     }
+}
+
+int Delay (float sec)
+{
+    clock_t start_time = clock ();
+
+    while ((double)((clock() - start_time)/CLOCKS_PER_SEC) < sec) {;}
+
+    return 0;
+}
+
+long long Logic_To_Phys (List* list, long long lognum)
+{
+    assert (list != NULL);
+    LIST_CHECK
+
+    if (lognum < 0)
+    {
+        fprintf (list->logfile, "lOgical number less null\n");
+        return ERR;
+    }
+
+    long long physnum = 0;
+    for (long long i = 0; i < lognum; i++)
+    {
+        physnum = list->next[physnum];
+    }
+    return physnum;
+}
+
+long long Phys_To_Logic (List* list, long long physnum)
+{
+    assert (list != NULL);
+    LIST_CHECK
+    if (physnum >= list->capacity || physnum < 0)
+    {
+        fprintf (list->logfile, "Physnum not index inside allocated memory for data. physnum = %lld\n", physnum);
+        return ERR;
+    }
+    else if (list->prev[physnum] < 0)
+    {
+        fprintf (list->logfile, "Node witn physical number physnum = %lld dont actually exist\n", physnum);
+        return ERR;
+    }
+    long long lognum = 0;
+    long long i      = 0;
+    while (i != physnum)
+    {
+        i = list->next[i];
+        lognum++;
+    }
+    return lognum;
 }

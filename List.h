@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <time.h>
 
 #define CAPACITY_0 8
 #define POISON     (1000 - 7)
@@ -38,5 +39,8 @@ int Dbg_Dump     (List* list);
 int List_Resize  (List* list);
 int List_Check   (List* list);
 int List_Ok      (List* list);
+int Delay        (float sec);
+int Linear       (List* list);
+long long Logic_To_Phys (List* list, long long lognum);
 
 #endif //LISTH
