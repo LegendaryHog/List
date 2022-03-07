@@ -42,5 +42,6 @@ int List_Ok      (List* list);
 int Delay        (float sec);
 int Linear       (List* list);
 long long Logic_To_Phys (List* list, long long lognum);
+long long Phys_To_Logic (List* list, long long physnum);
 
 #endif //LISTH

@@ -168,7 +168,7 @@ int Dbg_Dump (List* list)
     {
         fprintf (list->logfile, "List is Ok\n");
     }
-    fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\nlinearized = %d\n", list->size, list->capacity, list->free, list->linflag);
+    fprintf (list->logfile, "\tsize = %lld\n\tcapacity = %lld\n\tfree = %lld\n\tlinearized = %d\n", list->size, list->capacity, list->free, list->linflag);
     fprintf (list->logfile, "\tdata [%p]\n\t", list->data);
     if ((list->okmask & DATA_NULL) == 0)
     {
@@ -275,6 +275,14 @@ int Linear (List* list)
     {
         new_prev[i] = -1;
     }
+
+    free (list->data);
+    list->data = new_data;
+    free (list->next);
+    list->next = new_next;
+    free (list->prev);
+    list->prev = new_prev;
+
     list->linflag = 1;
     LIST_CHECK
     //Delay (30);
@@ -285,13 +293,13 @@ int List_Ok (List* list)
 {
     assert (list != NULL);
 
-    list->okmask |= DATA_NULL && (list->data == NULL);
-    list->okmask |= NEXT_NULL && (list->next == NULL);
-    list->okmask |= PREV_NULL && (list->prev == NULL);
-    list->okmask |= BAD_CAP   && (list->capacity < CAPACITY_0);
-    list->okmask |= BAD_FREE  && (list->free <= 0 || list->free > list->capacity);
-    list->okmask |= BAD_SIZE  && (list->size >= list->capacity || list->size < 0);
-    list->okmask |= LOG_NULL  && (list->logfile == NULL);
+    list->okmask |= DATA_NULL * (list->data == NULL);
+    list->okmask |= NEXT_NULL * (list->next == NULL);
+    list->okmask |= PREV_NULL * (list->prev == NULL);
+    list->okmask |= BAD_CAP   * (list->capacity < CAPACITY_0);
+    list->okmask |= BAD_FREE  * (list->free <= 0 || list->free > list->capacity);
+    list->okmask |= BAD_SIZE  * (list->size >= list->capacity || list->size < 0);
+    list->okmask |= LOG_NULL  * (list->logfile == NULL);
 
     if (list->okmask != 0)
     {
