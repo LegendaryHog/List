@@ -362,3 +362,8 @@ long long Phys_To_Logic (List* list, long long physnum)
     }
     return lognum;
 }
+
+int Graf_Dump (List* list)
+{
+    
+}
