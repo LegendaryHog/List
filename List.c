@@ -363,7 +363,29 @@ long long Phys_To_Logic (List* list, long long physnum)
     return lognum;
 }
 
-int Graf_Dump (List* list)
+int Graph_Dump (List* list)
 {
-    
+    FILE* graph = fopen ("graph_dump.dot", "w");
+    fprintf (graph, "<graph>\ndigraph G{\n");
+    fprintf (graph, "\trankdir=LR\n");
+    fprintf (graph, "\tnode[color=\"red\",shape=reord]\n");
+    fprintf (graph, "\tLIST [label=\"{List | data:\n%p | next:\n%p |", list->data, list->next);
+    fprintf (graph, " prev:\n%p | size: %lld | capacity: %lld | logfile %p", list->prev, list->size, list->capacity, list->logfile);
+    fprintf (graph, " okmask: 0x%0X | linflag: %d}\"]\n", list->okmask, list->linflag);
+    long long i = 0;
+    for (long long iter = 0; iter < list->size + 1; iter++)
+    {
+        fprintf (graph, "\tNODE%lld ", iter);
+        fprintf (graph, "[label=\"{%lld <elem%lld>| data: %d |", i, iter, list->data[i]);
+        fprintf (graph, " next: %lld <next%lld>| prev: %lld <prev%lld>}\"]\n", list->next[i], iter, list->prev[i], iter);
+        i = list->next[i];
+    }
+    for (long long j = 0; j < list->size; j++)
+    {
+        fprintf (graph, "\tNODE%lld:<next%lld> -> NODE%lld:<elem%lld>\n", j, j, j + 1, j + 1);
+    }
+    fprintf (graph, "\n}");
+    fclose (graph);
+    system ("dot -Tps graph.dot -o Graph_dump.png");
+    return NO_ERR;
 }

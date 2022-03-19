@@ -17,7 +17,7 @@ enum ERRORS {
 };
 
 typedef int data_t;
-typedef unsigned char flag_t;
+typedef unsigned char mask_t;
 
 typedef struct List {
     data_t*    data;
@@ -27,7 +27,7 @@ typedef struct List {
     long long  size;
     long long  capacity;
     FILE*      logfile;
-    flag_t     okmask;
+    mask_t     okmask;
     int        linflag;     
 } List;
 
@@ -41,7 +41,7 @@ int List_Check   (List* list);
 int List_Ok      (List* list);
 int Delay        (float sec);
 int Linear       (List* list);
-int Graf_Dump    (List* list);
+int Graph_Dump   (List* list);
 long long Logic_To_Phys (List* list, long long lognum);
 long long Phys_To_Logic (List* list, long long physnum);
 

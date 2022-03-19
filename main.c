@@ -11,6 +11,7 @@ int main (void)
     List_Ins_Aft (list, 0, 10);
     List_Ins_Aft (list, 1, 30);
     Dbg_Dump (list);
+    Graph_Dump (list);
     Linear (list);
     Dbg_Dump (list);
     List_Dtor (list);
