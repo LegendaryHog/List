@@ -1,1 +1,6 @@
-*.out *.o *.s 
+./a.out
+*.o
+*.s
+*.out
+*.txt
+

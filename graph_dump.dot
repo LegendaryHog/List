@@ -1,7 +1,7 @@
 digraph G{
 	rankdir=LR;
 	node[color="red",shape=record];
-	LIST [label="List:\n0x7fffcc0bb2a0 | data:\n0x7fffcc0bb2f0 | next:\n0x7fffcc0bb320 | prev:\n0x7fffcc0bb370 | size: 3 | capacity: 8 | logfile:\n0x7fffcc0bb3c0 | okmask: 0x00 | linflag: 0 "];
+	LIST [label="List:\n0x7fffbf60a2a0 | data:\n0x7fffbf60a2f0 | next:\n0x7fffbf60a320 | prev:\n0x7fffbf60a370 | size: 3 | capacity: 8 | logfile:\n0x7fffbf60a3c0 | okmask: 0x00 | linflag: 0 "];
 	NODE0 [label=" <elem0> 0 | data:\n 0 | <next0>  next:\n 2 | <prev0> prev:\n 3 "];
 	NODE1 [label=" <elem1> 2 | data:\n 10 | <next1>  next:\n 1 | <prev1> prev:\n 0 "];
 	NODE2 [label=" <elem2> 1 | data:\n 20 | <next2>  next:\n 3 | <prev2> prev:\n 2 "];
