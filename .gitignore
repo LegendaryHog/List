@@ -3,7 +3,7 @@
 *.s
 *.out
 *.txt
-*.dot
-*.png
+
 main.c
+Makefile
 

@@ -365,25 +365,42 @@ long long Phys_To_Logic (List* list, long long physnum)
 
 int Graph_Dump (List* list)
 {
-    FILE* graph = fopen ("graph_dump.dot", "w");
+    FILE* graph = fopen ("logs/graph_dump.dot", "w");
     fprintf (graph, "digraph G{\n");
     fprintf (graph, "\trankdir=LR;\n");
     fprintf (graph, "\tnode[color=\"red\",shape=record];\n");
-    fprintf (graph, "\tLIST [label=\"List:\\n%p | data:\\n%p | next:\\n%p |", list, list->data, list->next);
+    fprintf (graph, "\tLIST [color=black, style=filled, fillcolor=aqua, label=\" List:\\n%p |  data:\\n%p | next:\\n%p |", list, list->data, list->next);
     fprintf (graph, " prev:\\n%p | size: %lld | capacity: %lld | logfile:\\n%p |", list->prev, list->size, list->capacity, list->logfile);
     fprintf (graph, " okmask: 0x%02X | linflag: %d \"];\n", list->okmask, list->linflag);
     long long i = 0;
     for (long long iter = 0; iter < list->size + 1; iter++)
     {
         fprintf (graph, "\tNODE%lld ", iter);
-        fprintf (graph, "[label=\" <elem%lld> %lld | data:\\n %d |", iter, i, list->data[i]);
-        fprintf (graph, " <next%lld>  next:\\n %lld | <prev%lld> prev:\\n %lld \"];\n", iter, list->next[i], iter, list->prev[i]);
+        fprintf (graph, "[label=\" <elem%lld> ", iter);
+        if (i == START_END)
+        {
+            fprintf (graph, "FicNode\\n");
+        }
+        fprintf (graph, " %lld | ", i);
+        if (i != START_END)
+        {
+            fprintf (graph, "data:\\n %d |", list->data[i]);
+        }
+        fprintf (graph, " <next%lld>  next:\\n %lld | <prev%lld> prev:\\n %lld \"", iter, list->next[i], iter, list->prev[i]);
+        if (i == START_END)
+        {
+            fprintf (graph, "style=filled, fillcolor=aquamarine];\n");
+        }
+        else
+        {
+            fprintf (graph, "style=filled, fillcolor=greenyellow];\n");
+        }
         i = list->next[i];
     }
-    fprintf (graph, "\tLIST -> NODE0[color=white];\n");
+    fprintf (graph, "\tLIST -> NODE0[color=invis];\n");
     for (long long j = 0; j < list->size; j++)
     {
-        fprintf (graph, "\tNODE%lld -> NODE%lld [color = white];\n", j, j + 1);
+        fprintf (graph, "\tNODE%lld -> NODE%lld [color=invis];\n", j, j + 1);
     }
     for (long long j = 0; j < list->size; j++)
     {
@@ -395,6 +412,6 @@ int Graph_Dump (List* list)
     }
     fprintf (graph, "}\n");
     fclose (graph);
-    system ("dot -Tpng graph_dump.dot -o Graph_Dump.png\n");
+    system ("dot -Tpng logs/graph_dump.dot -o logs/Graph_Dump.png\n");
     return NO_ERR;
 }
