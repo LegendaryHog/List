@@ -12,8 +12,9 @@
     Documentation is there - not made yet.
 
 ## 2. Features of work with list on massives.
+
+### Massives.
 The biggest trouble in work with this realization of list is massives. I show you examples.
-Next:
 
 In ordinary list on pointer:
 
@@ -29,3 +30,28 @@ index = list->next[index]; //go forward on next link
 
 int num = list->data[list->next[index]]; // num is equal to data of next Node of index
 ```
+Cycles in list on pointer:
+```c
+for (Node* node = firstnode; node != NULL; node = node->next)
+{
+    ; //cycle body
+}
+```
+
+This cycle in list on massives:
+```c
+for (long long i = list->next[START_END]; i != START_END; i = list->next[i])
+{
+    ; //cycle body
+}
+```
+
+Anological for cycles on previous link.
+
+### Push
+
+To push in list, use `int List_Ins_Aft (List* list, long long last, data_t push)`.
+
+*Warning!!!*: last is **physical** number in list. To take physical number by logical number use fucntion `long long Logic_To_Phys (List* list, long long lognum)`.
+
+
