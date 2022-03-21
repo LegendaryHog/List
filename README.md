@@ -52,6 +52,12 @@ Anological for cycles on previous link.
 
 To push in list, use `int List_Ins_Aft (List* list, long long last, data_t push)`.
 
-*Warning!!!*: last is **physical** number in list. To take physical number by logical number use fucntion `long long Logic_To_Phys (List* list, long long lognum)`.
+*Warning!!!*: last is **physical** number in list. To take physical number by logical number use fucntion `long long Logic_To_Phys (List* list, long long lognum)` taht return physical number.
+
+If you call `int Linear (List* list)` list becomre linerized: logical numbers equal to physical.
+
+## 3. Graphviz dump.
+
+![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump.png "a title")
 
 
