@@ -12,4 +12,20 @@
     Documentation is there - not made yet.
 
 ## 2. Features of work with list on massives.
+The biggest trouble in work with this realization of list is massives. I show you examples.
+Next:
 
+In ordinary list on pointer:
+
+```c    
+node = node->next; //go forward on next link
+
+int num = node->next->data; //num is equal to data of next Node of node 
+```
+
+In list on massives:
+```c
+index = list->next[index]; //go forward on next link
+
+int num = list->data[list->next[index]]; // num is equal to data of next Node of index
+```
