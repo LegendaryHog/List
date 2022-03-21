@@ -62,4 +62,31 @@ Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))
 
 ![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump.png "a title")
 
+## 4. Example of main for debugging.
+
+```c
+#include "path/List.h"
+
+int main (void)
+{
+    List* list = (List*) calloc (1, sizeof (List));
+
+    List_Ctor (list);
+    Dbg_Dump (list);
+
+    List_Ins_Aft (list, 0, 20);
+    List_Ins_Aft (list, 0, 10);
+    List_Ins_Aft (list, 1, 30);
+    Dbg_Dump (list);
+    Graph_Dump (list);
+    Linear (list);
+    Dbg_Dump (list);
+    List_Dtor (list);
+    free (list);
+    return 0;
+}
+```
+
+
+
 
