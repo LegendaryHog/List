@@ -4,6 +4,7 @@
 *.out
 *.txt
 
+DoxList
 main.c
 Makefile
 
