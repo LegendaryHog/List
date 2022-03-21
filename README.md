@@ -58,6 +58,8 @@ If you call `int Linear (List* list)` list becomre linerized: logical numbers eq
 
 ## 3. Graphviz dump.
 
+Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))
+
 ![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump.png "a title")
 
 
