@@ -62,6 +62,8 @@ Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))
 
 ![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump0.png "a title")
 
+All dumps saves in directory "logs" with numbering.
+
 ## 4. Example of main for debugging.
 
 ```c

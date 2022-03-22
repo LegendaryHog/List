@@ -1,42 +1,42 @@
-List [0x7fffde7292a0].List is Ok
+List [0x7ffff10ae2a0].List is Ok
 	size = 0
 	capacity = 8
 	free = 1
 	linearized = 1
-	data [0x7fffde7292f0]
+	data [0x7ffff10ae2f0]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  0] [  0] [  0] [  0] [  0] [  0] [  0] [  0] 
-	next [0x7fffde729320]
+	next [0x7ffff10ae320]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  0] [ -2] [ -3] [ -4] [ -5] [ -6] [ -7] [ -8] 
-	prev [0x7fffde729370]
+	prev [0x7ffff10ae370]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  0] [ -1] [ -1] [ -1] [ -1] [ -1] [ -1] [ -1] 
-List [0x7fffde7292a0].List is Ok
+List [0x7ffff10ae2a0].List is Ok
 	size = 3
 	capacity = 8
 	free = 4
 	linearized = 0
-	data [0x7fffde7292f0]
+	data [0x7ffff10ae2f0]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  0] [ 20] [ 10] [ 30] [  0] [  0] [  0] [  0] 
-	next [0x7fffde729320]
+	next [0x7ffff10ae320]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  2] [  3] [  1] [  0] [ -5] [ -6] [ -7] [ -8] 
-	prev [0x7fffde729370]
+	prev [0x7ffff10ae370]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  3] [  2] [  0] [  1] [ -1] [ -1] [ -1] [ -1] 
-List [0x7fffde7292a0].List is Ok
+List [0x7ffff10ae2a0].List is Ok
 	size = 3
 	capacity = 8
 	free = 4
 	linearized = 1
-	data [0x7fffde72a7d0]
+	data [0x7ffff10af7d0]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  0] [ 10] [ 20] [ 30] [  0] [  0] [  0] [  0] 
-	next [0x7fffde72a800]
+	next [0x7ffff10af800]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  1] [  2] [  3] [  0] [ -5] [ -6] [ -7] [ -8] 
-	prev [0x7fffde72a850]
+	prev [0x7ffff10af850]
 	[  0] [  1] [  2] [  3] [  4] [  5] [  6] [  7] 
 	[  3] [  0] [  1] [  2] [ -1] [ -1] [ -1] [ -1] 

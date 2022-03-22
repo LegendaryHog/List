@@ -1,15 +1,15 @@
 #include "List.h"
 
-//!@(
-/*Masks of errors*/
-#define DATA_NULL  (1<<0)
-#define NEXT_NULL  (1<<1)
-#define PREV_NULL  (1<<2)
-#define BAD_CAP    (1<<3)
-#define BAD_FREE   (1<<4)
-#define BAD_SIZE   (1<<5)
-#define LOG_NULL   (1<<6)
-//!@)
+
+
+#define DATA_NULL  (1<<0) ///< mask of error 
+#define NEXT_NULL  (1<<1) ///< mask of error
+#define PREV_NULL  (1<<2) ///< mask of error
+#define BAD_CAP    (1<<3) ///< mask of error
+#define BAD_FREE   (1<<4) ///< mask of error
+#define BAD_SIZE   (1<<5) ///< mask of error
+#define LOG_NULL   (1<<6) ///< mask of error
+
 
 #define ERR_NUM    7 ///< number of possible erros
 

@@ -1,0 +1,288 @@
+\hypertarget{_list_8c}{}\doxysection{List.\+c File Reference}
+\label{_list_8c}\index{List.c@{List.c}}
+{\ttfamily \#include \char`\"{}List.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_list_8c_ad78b89666e29ba6a118bf45ef5236138}{DATA\+\_\+\+NULL}}~(1$<$$<$0)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_afc29a1d33a48757ba7aa915f9d820d88}{NEXT\+\_\+\+NULL}}~(1$<$$<$1)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_a6f2ad7763a04be0cd32176cced88df7b}{PREV\+\_\+\+NULL}}~(1$<$$<$2)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_af4d20d880ee4152b1c7cdc6396482b72}{BAD\+\_\+\+CAP}}~(1$<$$<$3)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_a0a8ee294b1e53f0dbfb0e754baea457d}{BAD\+\_\+\+FREE}}~(1$<$$<$4)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_ad617fe2aefd5321101781dc57bc3c4ee}{BAD\+\_\+\+SIZE}}~(1$<$$<$5)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_ae3b3638575ad43aa2dba40543dcec45c}{LOG\+\_\+\+NULL}}~(1$<$$<$6)
+\begin{DoxyCompactList}\small\item\em mask of error \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_ace12b3ac6f15fbdc4288420ab26eda73}{ERR\+\_\+\+NUM}}~7
+\begin{DoxyCompactList}\small\item\em number of possible erros \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_list_8c_a949a69af4e23248405b1905a44cc9e4a}{MAX\+\_\+\+LEN\+\_\+\+ERR}}~24
+\begin{DoxyCompactList}\small\item\em maximum of length for string in massive with errors messages \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_list_8c_a086f56854a2f58161eadf171b915615c}{List\+\_\+\+Ctor}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_a332fd751a42a103d86c539cbec9f0d76}{List\+\_\+\+Dtor}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_a76c789343b6234a89281e08e3bffdcf3}{List\+\_\+\+Ins\+\_\+\+Aft}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, long long last, \mbox{\hyperlink{_list_8h_a9854bd2bf1d220fd8e003bb2eb05be0d}{data\+\_\+t}} push)
+\item 
+int \mbox{\hyperlink{_list_8c_aae5a5d21f7d53de9f30f5c600fb96f07}{List\+\_\+\+Delete}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, long long elem)
+\item 
+int \mbox{\hyperlink{_list_8c_ac91f3e2f2d9e2a54183f57e8d228b47d}{Dbg\+\_\+\+Dump}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_ae041623f865f24fc172ff29d8be4bd58}{List\+\_\+\+Resize}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_ae514530c249aa8e00c87211b519bd141}{Linear}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_ac5491153d469505d245173828f5fc5f2}{List\+\_\+\+Ok}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\item 
+int \mbox{\hyperlink{_list_8c_aa65a7bd9da1921060578f9bf154cba09}{Delay}} (float sec)
+\item 
+long long \mbox{\hyperlink{_list_8c_abcf6e60bff0c8425d82cb24811524b4b}{Logic\+\_\+\+To\+\_\+\+Phys}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, long long lognum)
+\item 
+long long \mbox{\hyperlink{_list_8c_af60bdf1bfda6904d761e2ccbc68c3f52}{Phys\+\_\+\+To\+\_\+\+Logic}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, long long physnum)
+\item 
+int \mbox{\hyperlink{_list_8c_a86edac8c2aa9c6d45cc62cbbc4abbfff}{Graph\+\_\+\+Dump}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{_list_8c_a3fb84b280efe4df9ac0522a5b252c832}{err\+\_\+names}} \mbox{[}$\,$\mbox{]}\mbox{[}\mbox{\hyperlink{_list_8c_a949a69af4e23248405b1905a44cc9e4a}{MAX\+\_\+\+LEN\+\_\+\+ERR}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Massive of errors messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_list_8c_af4d20d880ee4152b1c7cdc6396482b72}\label{_list_8c_af4d20d880ee4152b1c7cdc6396482b72}} 
+\index{List.c@{List.c}!BAD\_CAP@{BAD\_CAP}}
+\index{BAD\_CAP@{BAD\_CAP}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{BAD\_CAP}{BAD\_CAP}}
+{\footnotesize\ttfamily \#define BAD\+\_\+\+CAP~(1$<$$<$3)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_a0a8ee294b1e53f0dbfb0e754baea457d}\label{_list_8c_a0a8ee294b1e53f0dbfb0e754baea457d}} 
+\index{List.c@{List.c}!BAD\_FREE@{BAD\_FREE}}
+\index{BAD\_FREE@{BAD\_FREE}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{BAD\_FREE}{BAD\_FREE}}
+{\footnotesize\ttfamily \#define BAD\+\_\+\+FREE~(1$<$$<$4)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_ad617fe2aefd5321101781dc57bc3c4ee}\label{_list_8c_ad617fe2aefd5321101781dc57bc3c4ee}} 
+\index{List.c@{List.c}!BAD\_SIZE@{BAD\_SIZE}}
+\index{BAD\_SIZE@{BAD\_SIZE}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{BAD\_SIZE}{BAD\_SIZE}}
+{\footnotesize\ttfamily \#define BAD\+\_\+\+SIZE~(1$<$$<$5)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_ad78b89666e29ba6a118bf45ef5236138}\label{_list_8c_ad78b89666e29ba6a118bf45ef5236138}} 
+\index{List.c@{List.c}!DATA\_NULL@{DATA\_NULL}}
+\index{DATA\_NULL@{DATA\_NULL}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{DATA\_NULL}{DATA\_NULL}}
+{\footnotesize\ttfamily \#define DATA\+\_\+\+NULL~(1$<$$<$0)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_ace12b3ac6f15fbdc4288420ab26eda73}\label{_list_8c_ace12b3ac6f15fbdc4288420ab26eda73}} 
+\index{List.c@{List.c}!ERR\_NUM@{ERR\_NUM}}
+\index{ERR\_NUM@{ERR\_NUM}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{ERR\_NUM}{ERR\_NUM}}
+{\footnotesize\ttfamily \#define ERR\+\_\+\+NUM~7}
+
+
+
+number of possible erros 
+
+\mbox{\Hypertarget{_list_8c_ae3b3638575ad43aa2dba40543dcec45c}\label{_list_8c_ae3b3638575ad43aa2dba40543dcec45c}} 
+\index{List.c@{List.c}!LOG\_NULL@{LOG\_NULL}}
+\index{LOG\_NULL@{LOG\_NULL}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_NULL}{LOG\_NULL}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+NULL~(1$<$$<$6)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_a949a69af4e23248405b1905a44cc9e4a}\label{_list_8c_a949a69af4e23248405b1905a44cc9e4a}} 
+\index{List.c@{List.c}!MAX\_LEN\_ERR@{MAX\_LEN\_ERR}}
+\index{MAX\_LEN\_ERR@{MAX\_LEN\_ERR}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LEN\_ERR}{MAX\_LEN\_ERR}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LEN\+\_\+\+ERR~24}
+
+
+
+maximum of length for string in massive with errors messages 
+
+\mbox{\Hypertarget{_list_8c_afc29a1d33a48757ba7aa915f9d820d88}\label{_list_8c_afc29a1d33a48757ba7aa915f9d820d88}} 
+\index{List.c@{List.c}!NEXT\_NULL@{NEXT\_NULL}}
+\index{NEXT\_NULL@{NEXT\_NULL}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{NEXT\_NULL}{NEXT\_NULL}}
+{\footnotesize\ttfamily \#define NEXT\+\_\+\+NULL~(1$<$$<$1)}
+
+
+
+mask of error 
+
+\mbox{\Hypertarget{_list_8c_a6f2ad7763a04be0cd32176cced88df7b}\label{_list_8c_a6f2ad7763a04be0cd32176cced88df7b}} 
+\index{List.c@{List.c}!PREV\_NULL@{PREV\_NULL}}
+\index{PREV\_NULL@{PREV\_NULL}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{PREV\_NULL}{PREV\_NULL}}
+{\footnotesize\ttfamily \#define PREV\+\_\+\+NULL~(1$<$$<$2)}
+
+
+
+mask of error 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_list_8c_ac91f3e2f2d9e2a54183f57e8d228b47d}\label{_list_8c_ac91f3e2f2d9e2a54183f57e8d228b47d}} 
+\index{List.c@{List.c}!Dbg\_Dump@{Dbg\_Dump}}
+\index{Dbg\_Dump@{Dbg\_Dump}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Dbg\_Dump()}{Dbg\_Dump()}}
+{\footnotesize\ttfamily int Dbg\+\_\+\+Dump (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that make text dump of list in logs/logfile.\+txt param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_aa65a7bd9da1921060578f9bf154cba09}\label{_list_8c_aa65a7bd9da1921060578f9bf154cba09}} 
+\index{List.c@{List.c}!Delay@{Delay}}
+\index{Delay@{Delay}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Delay()}{Delay()}}
+{\footnotesize\ttfamily int Delay (\begin{DoxyParamCaption}\item[{float}]{sec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_list_8c_a86edac8c2aa9c6d45cc62cbbc4abbfff}\label{_list_8c_a86edac8c2aa9c6d45cc62cbbc4abbfff}} 
+\index{List.c@{List.c}!Graph\_Dump@{Graph\_Dump}}
+\index{Graph\_Dump@{Graph\_Dump}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Graph\_Dump()}{Graph\_Dump()}}
+{\footnotesize\ttfamily int Graph\+\_\+\+Dump (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that generate dot file logs/graph\+\_\+dump.\+dot in dot syntax to make visualized dump in logs/\+Graph\+\_\+\+Dump.\+png param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_ae514530c249aa8e00c87211b519bd141}\label{_list_8c_ae514530c249aa8e00c87211b519bd141}} 
+\index{List.c@{List.c}!Linear@{Linear}}
+\index{Linear@{Linear}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Linear()}{Linear()}}
+{\footnotesize\ttfamily int Linear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that linerizes massives\+: make logical number equal to physical. param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_a086f56854a2f58161eadf171b915615c}\label{_list_8c_a086f56854a2f58161eadf171b915615c}} 
+\index{List.c@{List.c}!List\_Ctor@{List\_Ctor}}
+\index{List\_Ctor@{List\_Ctor}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Ctor()}{List\_Ctor()}}
+{\footnotesize\ttfamily int List\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that initializes structure fields and allocate memory. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em list} & -\/ pointer on struct, that must be alloctae on sizeof (\mbox{\hyperlink{struct_list}{List}}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ ERR -\/ if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_aae5a5d21f7d53de9f30f5c600fb96f07}\label{_list_8c_aae5a5d21f7d53de9f30f5c600fb96f07}} 
+\index{List.c@{List.c}!List\_Delete@{List\_Delete}}
+\index{List\_Delete@{List\_Delete}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Delete()}{List\_Delete()}}
+{\footnotesize\ttfamily int List\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{long long}]{elem }\end{DoxyParamCaption})}
+
+Function that delete node with index \char`\"{}elem\char`\"{} param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before param \mbox{[}in\mbox{]} elem -\/ physical index in data massive of node that need to delete. This node must exist. \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_a332fd751a42a103d86c539cbec9f0d76}\label{_list_8c_a332fd751a42a103d86c539cbec9f0d76}} 
+\index{List.c@{List.c}!List\_Dtor@{List\_Dtor}}
+\index{List\_Dtor@{List\_Dtor}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Dtor()}{List\_Dtor()}}
+{\footnotesize\ttfamily int List\+\_\+\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Fucntion that destructs your list. Use it if you don\textquotesingle{}t need list param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_a76c789343b6234a89281e08e3bffdcf3}\label{_list_8c_a76c789343b6234a89281e08e3bffdcf3}} 
+\index{List.c@{List.c}!List\_Ins\_Aft@{List\_Ins\_Aft}}
+\index{List\_Ins\_Aft@{List\_Ins\_Aft}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Ins\_Aft()}{List\_Ins\_Aft()}}
+{\footnotesize\ttfamily int List\+\_\+\+Ins\+\_\+\+Aft (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{long long}]{last,  }\item[{\mbox{\hyperlink{_list_8h_a9854bd2bf1d220fd8e003bb2eb05be0d}{data\+\_\+t}}}]{push }\end{DoxyParamCaption})}
+
+Fucntion that insert node after \char`\"{}last\char`\"{} node. param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before param \mbox{[}in\mbox{]} last -\/ physical index of node in data massive, after that inseret new node param \mbox{[}in\mbox{]} push -\/ data, that will be saved in new node \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_ac5491153d469505d245173828f5fc5f2}\label{_list_8c_ac5491153d469505d245173828f5fc5f2}} 
+\index{List.c@{List.c}!List\_Ok@{List\_Ok}}
+\index{List\_Ok@{List\_Ok}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Ok()}{List\_Ok()}}
+{\footnotesize\ttfamily int List\+\_\+\+Ok (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that checkы struct list param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if something fields is wrong, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_ae041623f865f24fc172ff29d8be4bd58}\label{_list_8c_ae041623f865f24fc172ff29d8be4bd58}} 
+\index{List.c@{List.c}!List\_Resize@{List\_Resize}}
+\index{List\_Resize@{List\_Resize}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{List\_Resize()}{List\_Resize()}}
+{\footnotesize\ttfamily int List\+\_\+\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+Function that reallocate (in high) massives. Call in List\+\_\+\+Ins\+\_\+\+Aft (). You don\textquotesingle{}t have to call it by yourself. param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ ERR if some errors happened, else -\/ NO\+\_\+\+ERR. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_abcf6e60bff0c8425d82cb24811524b4b}\label{_list_8c_abcf6e60bff0c8425d82cb24811524b4b}} 
+\index{List.c@{List.c}!Logic\_To\_Phys@{Logic\_To\_Phys}}
+\index{Logic\_To\_Phys@{Logic\_To\_Phys}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Logic\_To\_Phys()}{Logic\_To\_Phys()}}
+{\footnotesize\ttfamily long long Logic\+\_\+\+To\+\_\+\+Phys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{long long}]{lognum }\end{DoxyParamCaption})}
+
+Function that return physical number by logical number. param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ physical number. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8c_af60bdf1bfda6904d761e2ccbc68c3f52}\label{_list_8c_af60bdf1bfda6904d761e2ccbc68c3f52}} 
+\index{List.c@{List.c}!Phys\_To\_Logic@{Phys\_To\_Logic}}
+\index{Phys\_To\_Logic@{Phys\_To\_Logic}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{Phys\_To\_Logic()}{Phys\_To\_Logic()}}
+{\footnotesize\ttfamily long long Phys\+\_\+\+To\+\_\+\+Logic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{long long}]{physnum }\end{DoxyParamCaption})}
+
+Function that return logical number by physical number. param \mbox{[}in,out\mbox{]} list -\/ pointer on struct, that must be ctored before \begin{DoxyReturn}{Returns}
+-\/ logical number. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_list_8c_a3fb84b280efe4df9ac0522a5b252c832}\label{_list_8c_a3fb84b280efe4df9ac0522a5b252c832}} 
+\index{List.c@{List.c}!err\_names@{err\_names}}
+\index{err\_names@{err\_names}!List.c@{List.c}}
+\doxysubsubsection{\texorpdfstring{err\_names}{err\_names}}
+{\footnotesize\ttfamily char err\+\_\+names\mbox{[}$\,$\mbox{]}\mbox{[}\mbox{\hyperlink{_list_8c_a949a69af4e23248405b1905a44cc9e4a}{MAX\+\_\+\+LEN\+\_\+\+ERR}}\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}data pointer is NULL\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}next pointer is NULL\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}prev pointer is NULL\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}bad capacity\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}free element is null\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}bad size\(\backslash\)n"{}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}logfile pointer is NULL"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Massive of errors messages. 
+

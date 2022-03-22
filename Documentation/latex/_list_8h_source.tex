@@ -1,0 +1,64 @@
+\hypertarget{_list_8h_source}{}\doxysection{List.\+h}
+\mbox{\hyperlink{_list_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef LISTH}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define LISTH}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <assert.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define CAPACITY\_0 8 }}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define POISON     (1000 -\/ 7)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define START\_END  0 }}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define LIST\_CHECK if (List\_Ok (list) == ERR)\{Dbg\_Dump(list); Graph\_Dump(list); return ERR;\}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define LEN0 54}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{16 \textcolor{keyword}{enum} \mbox{\hyperlink{_list_8h_a622ccac4bed4b5ffcfd1acea83629286}{ERRORS}} \{}
+\DoxyCodeLine{17     \mbox{\hyperlink{_list_8h_a622ccac4bed4b5ffcfd1acea83629286a996b5f0bbad38a985dd3b62337879919}{NO\_ERR}} = 0,}
+\DoxyCodeLine{18     \mbox{\hyperlink{_list_8h_a622ccac4bed4b5ffcfd1acea83629286a0f886785b600b91048fcdc434c6b4a8e}{ERR}} = 1,}
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_a9854bd2bf1d220fd8e003bb2eb05be0d}{data\_t}}; }
+\DoxyCodeLine{22 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{_list_8h_aa7fa47c8b0568deb5389571575ee1b3f}{mask\_t}};}
+\DoxyCodeLine{24 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_list}{List}} \{}
+\DoxyCodeLine{25     \mbox{\hyperlink{_list_8h_a9854bd2bf1d220fd8e003bb2eb05be0d}{data\_t}}*    \mbox{\hyperlink{struct_list_a61948a3f9fe06500b9295e50b06f07bc}{data}};}
+\DoxyCodeLine{26     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}* \mbox{\hyperlink{struct_list_a30bf307d96bb38dc9c0b4af9af1e2f5e}{next}};}
+\DoxyCodeLine{27     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}* \mbox{\hyperlink{struct_list_aadc19a51b49c9fa7c03f032249c118d3}{prev}};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}  \mbox{\hyperlink{struct_list_a18ef7f37010fcb57b5f06fe8d83db83d}{free}};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}  \mbox{\hyperlink{struct_list_a2fd48b7cad94454d49e9be8785a32135}{size}};}
+\DoxyCodeLine{30     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long}  \mbox{\hyperlink{struct_list_a17e9f9c212e9cadf4c090135717b5661}{capacity}};}
+\DoxyCodeLine{31     FILE*      \mbox{\hyperlink{struct_list_ab25a3625a8efbaa3d81ef27bbb51c9c5}{logfile}};}
+\DoxyCodeLine{32     \textcolor{keywordtype}{size\_t}     \mbox{\hyperlink{struct_list_adf7065f212a1c6ed1c025475e4e9494f}{gd\_counter}};}
+\DoxyCodeLine{33     \mbox{\hyperlink{_list_8h_aa7fa47c8b0568deb5389571575ee1b3f}{mask\_t}}     \mbox{\hyperlink{struct_list_a7e40d1e8d7cf95c18bfec8c0153d6307}{okmask}};}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int}        \mbox{\hyperlink{struct_list_a964d43f548e4f772d1fe879340bb7177}{linflag}};     }
+\DoxyCodeLine{35 \} \mbox{\hyperlink{_list_8h_a61366e7da8638d66a464a4a6f4799199}{List}};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_a086f56854a2f58161eadf171b915615c}{List\_Ctor}}    (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{49 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_a332fd751a42a103d86c539cbec9f0d76}{List\_Dtor}}    (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{58 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_a76c789343b6234a89281e08e3bffdcf3}{List\_Ins\_Aft}} (\mbox{\hyperlink{struct_list}{List}}* list, \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} last, \mbox{\hyperlink{_list_8h_a9854bd2bf1d220fd8e003bb2eb05be0d}{data\_t}} push);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{66 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_aae5a5d21f7d53de9f30f5c600fb96f07}{List\_Delete}}  (\mbox{\hyperlink{struct_list}{List}}* list, \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} elem);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{73 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_ac91f3e2f2d9e2a54183f57e8d228b47d}{Dbg\_Dump}}     (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{80 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_ae041623f865f24fc172ff29d8be4bd58}{List\_Resize}}  (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{87 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_ac5491153d469505d245173828f5fc5f2}{List\_Ok}}      (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_aa65a7bd9da1921060578f9bf154cba09}{Delay}}        (\textcolor{keywordtype}{float} sec);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_ae514530c249aa8e00c87211b519bd141}{Linear}}       (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{103 \textcolor{keywordtype}{int} \mbox{\hyperlink{_list_8h_a86edac8c2aa9c6d45cc62cbbc4abbfff}{Graph\_Dump}}   (\mbox{\hyperlink{struct_list}{List}}* list);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{110 \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{_list_8h_abcf6e60bff0c8425d82cb24811524b4b}{Logic\_To\_Phys}} (\mbox{\hyperlink{struct_list}{List}}* list, \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} lognum);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{117 \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{_list_8h_af60bdf1bfda6904d761e2ccbc68c3f52}{Phys\_To\_Logic}} (\mbox{\hyperlink{struct_list}{List}}* list, \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} physnum);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//LISTH}}
+
+\end{DoxyCode}
