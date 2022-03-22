@@ -41,7 +41,7 @@ int List_Ctor (List* list)
     }
     list->free    = START_END + 1;
     list->linflag = 1;
-    list->logfile = fopen ("logfile.txt", "w");
+    list->logfile = fopen ("logs/logfile.txt", "w");
     list->okmask = 0;
     return NO_ERR;
 }

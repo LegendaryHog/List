@@ -2,8 +2,8 @@
 *.o
 *.s
 *.out
-*.txt
 
+DoxList
 main.c
 Makefile
 

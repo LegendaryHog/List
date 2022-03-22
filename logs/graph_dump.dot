@@ -1,11 +1,11 @@
 digraph G{
 	rankdir=LR;
 	node[color="red",shape=record];
-	LIST [color=black, style=filled, fillcolor=aqua, label=" List:\n0x7fffd26912a0 |  data:\n0x7fffd26912f0 | next:\n0x7fffd2691320 | prev:\n0x7fffd2691370 | size: 3 | capacity: 8 | logfile:\n0x7fffd26913c0 | okmask: 0x00 | linflag: 0 "];
-	NODE0 [label=" <elem0> FicNode\n 0 |  <next0>  next:\n 2 | <prev0> prev:\n 3 "style=filled, fillcolor=aquamarine];
-	NODE1 [label=" <elem1>  2 | data:\n 10 | <next1>  next:\n 1 | <prev1> prev:\n 0 "style=filled, fillcolor=greenyellow];
-	NODE2 [label=" <elem2>  1 | data:\n 20 | <next2>  next:\n 3 | <prev2> prev:\n 2 "style=filled, fillcolor=greenyellow];
-	NODE3 [label=" <elem3>  3 | data:\n 30 | <next3>  next:\n 0 | <prev3> prev:\n 1 "style=filled, fillcolor=greenyellow];
+	LIST [color=black, style=filled, fillcolor=aqua, label=" List:\n0x7fffbdb592a0 |  data:\n0x7fffbdb5a790 | next:\n0x7fffbdb5a7c0 | prev:\n0x7fffbdb5a810 | size: 3 | capacity: 8 | logfile:\n0x7fffbdb593c0 | okmask: 0x00 | linflag: 1 "];
+	NODE0 [label=" <elem0> FicNode\n 0 |  <next0>  next:\n 1 | <prev0> prev:\n 3 "style=filled, fillcolor=aquamarine];
+	NODE1 [label=" <elem1>  1 | data:\n 10 | <next1>  next:\n 2 | <prev1> prev:\n 0 "style=filled, fillcolor=greenyellow];
+	NODE2 [label=" <elem2>  2 | data:\n 20 | <next2>  next:\n 3 | <prev2> prev:\n 1 "style=filled, fillcolor=greenyellow];
+	NODE3 [label=" <elem3>  3 | data:\n 30 | <next3>  next:\n 0 | <prev3> prev:\n 2 "style=filled, fillcolor=greenyellow];
 	LIST -> NODE0[color=invis];
 	NODE0 -> NODE1 [color=invis];
 	NODE1 -> NODE2 [color=invis];
