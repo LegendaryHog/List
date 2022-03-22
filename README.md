@@ -67,7 +67,7 @@ All dumps saves in directory "logs" with numbering.
 ## 4. Example of main for debugging.
 
 ```c
-#include "path/List.h"
+#include "List.h"
 
 int main (void)
 {
@@ -87,6 +87,20 @@ int main (void)
     free (list);
     return 0;
 }
+```
+
+Makefile for debug with this main.
+```Makefile
+all: comp run
+
+comp:
+	gcc List.c main.c -Wall -Wextra -o list.out
+
+run:
+	./list.out
+
+val_run:
+	valgrind --leak-check=full -s ./list.out
 ```
 
 
