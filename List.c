@@ -1,5 +1,7 @@
 #include "List.h"
 
+//!@(
+/*Masks of errors*/
 #define DATA_NULL  (1<<0)
 #define NEXT_NULL  (1<<1)
 #define PREV_NULL  (1<<2)
@@ -7,10 +9,13 @@
 #define BAD_FREE   (1<<4)
 #define BAD_SIZE   (1<<5)
 #define LOG_NULL   (1<<6)
-#define ERR_NUM    7
+//!@)
 
-#define MAX_LEN_ERR 24
+#define ERR_NUM    7 ///< number of possible erros
 
+#define MAX_LEN_ERR 24 ///< maximum of length for string in massive with errors messages
+
+//! Massive of errors messages
 char err_names [][MAX_LEN_ERR] = {
     {"data pointer is NULL\n"},
     {"next pointer is NULL\n"},
@@ -43,6 +48,7 @@ int List_Ctor (List* list)
     list->linflag = 1;
     list->logfile = fopen ("logs/logfile.txt", "w");
     list->okmask = 0;
+    LIST_CHECK
     return NO_ERR;
 }
 
@@ -243,8 +249,6 @@ int List_Resize (List* list)
 
 int Linear (List* list)
 {
-    //system ("cmd.exe /c start ");
-
     assert (list != NULL);
     LIST_CHECK
     data_t*    new_data = (data_t*)    calloc (list->capacity, sizeof (data_t));
@@ -365,6 +369,8 @@ long long Phys_To_Logic (List* list, long long physnum)
 
 int Graph_Dump (List* list)
 {
+    assert (list != NULL);
+    LIST_CHECK
     FILE* graph = fopen ("logs/graph_dump.dot", "w");
     fprintf (graph, "digraph G{\n");
     fprintf (graph, "\trankdir=LR;\n");
