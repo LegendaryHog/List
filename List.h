@@ -10,6 +10,7 @@
 #define POISON     (1000 - 7)
 #define START_END  0 ///< number of fictive node in massives
 #define LIST_CHECK if (List_Ok (list) == ERR){Dbg_Dump(list); Graph_Dump(list); return ERR;}
+#define LEN0 54
 
 /*! Enum with errors codes*/
 enum ERRORS {
@@ -28,6 +29,7 @@ typedef struct List {
     long long  size;
     long long  capacity;
     FILE*      logfile;
+    size_t     gd_counter;
     mask_t     okmask;
     int        linflag;     
 } List;

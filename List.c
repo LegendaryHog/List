@@ -47,6 +47,7 @@ int List_Ctor (List* list)
     list->free    = START_END + 1;
     list->linflag = 1;
     list->logfile = fopen ("logs/logfile.txt", "w");
+    list->gd_counter = 0;
     list->okmask = 0;
     LIST_CHECK
     return NO_ERR;
@@ -418,6 +419,11 @@ int Graph_Dump (List* list)
     }
     fprintf (graph, "}\n");
     fclose (graph);
-    system ("dot -Tpng logs/graph_dump.dot -o logs/Graph_Dump.png\n");
+    char* cmd_mes = (char*) calloc (LEN0 + list->gd_counter/10, sizeof (char));
+    sprintf (cmd_mes, "dot -Tpng logs/graph_dump.dot -o logs/Graph_Dump%zd.png", list->gd_counter);
+    system (cmd_mes);
+    free (cmd_mes);
+    system ("rm logs/graph_dump.dot");
+    list->gd_counter++;
     return NO_ERR;
 }
