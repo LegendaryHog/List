@@ -60,7 +60,7 @@ If you call `int Linear (List* list)` list becomre linerized: logical numbers eq
 
 Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))
 
-![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump.png "a title")
+![Example of Graphviz Dump (from [main](#4-example-of-main-for-debugging))](https://github.com/LegendaryHog/List/blob/main/logs/Graph_Dump0.png "a title")
 
 ## 4. Example of main for debugging.
 
